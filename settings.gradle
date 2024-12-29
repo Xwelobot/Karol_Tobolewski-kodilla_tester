@@ -1,2 +1,5 @@
 rootProject.name = 'kodilla-course'
+include 'kodilla-intro'
+include 'kodilla-intro:HelloWorld'
+findProject(':kodilla-intro:HelloWorld')?.name = 'HelloWorld'
 
