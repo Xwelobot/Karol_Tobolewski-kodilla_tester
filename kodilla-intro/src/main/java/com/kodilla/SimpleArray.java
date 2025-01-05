@@ -9,5 +9,6 @@ public class SimpleArray {
         names[3] = "Michal";
         names[4] = "Mikolaj";
         String name = names[2];
+        System.out.println(names[2]);
     }
 }
