@@ -13,6 +13,6 @@ public class SimpleArray {
         System.out.println(movie);
 
         int numberOfElements = movies.length;
-        System.out.println(numberOfElements);
+        System.out.println("Moja tablica zawiera " + numberOfElements + " elementow");
     }
 }
