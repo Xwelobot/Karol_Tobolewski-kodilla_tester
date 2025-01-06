@@ -9,10 +9,11 @@ public class SimpleArray {
         movies[3] = "Heretic";
         movies[4] = "Hooligans";
 
-        String movie = movies[4];
+        String movie = movies[3];
         System.out.println(movie);
 
         int numberOfElements = movies.length;
-        System.out.println("Moja tablica zawiera " + numberOfElements + " elementow");
+        char movieClass = 'A';
+        System.out.println("Moja tablica zawiera " + numberOfElements + " elementow. " + "Filmy sa klasy " + movieClass);
     }
 }
