@@ -16,6 +16,9 @@ public class RandomNumbers {
             result++;
 
             if (temp > maxNumber) {
+                maxNumber = temp;
+            }
+            if (temp < minNumber) {
                 minNumber = temp;
             }
         }
