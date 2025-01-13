@@ -3,12 +3,16 @@ package com.kodilla;
 import java.util.Random;
 
 public class RandomNumbers {
+    int maxNumber = Integer.MIN_VALUE;
+    int minNumber = Integer.MAX_VALUE;
     public int randomNumbers(int max) {
         Random random = new Random();
         int result = 0;
         int sum = 0;
-        int maxNumber = Integer.MIN_VALUE;
-        int minNumber = Integer.MAX_VALUE;
+
+        private static String RandomNumbers(int maxNumber, int minNumber) {
+
+        }
 
         while (sum < max) {
             int temp = random.nextInt(31);
