@@ -1,28 +1,26 @@
 package com.kodilla.inheritance.homework;
 
 public class OperatingSystem {
-    private int win;
-    private int mac;
+    private int year;
 
-    public OperatingSystem (int win, int mac) {
-        this.win = win;
-        this.mac = mac;
+    public OperatingSystem (int year) {
+        this.year = year;
     }
 
-    public static void turnOn() {
+    public void turnOn() {
         System.out.println("Turning on");
     }
 
-    public static void turnOff() {
+    public void turnOff() {
         System.out.println("Turning off");
     }
 
     public int getWin(){
-        return win;
+        return year;
     }
 
     public int getMac(){
-        return mac;
+        return year;
     }
 
 }
