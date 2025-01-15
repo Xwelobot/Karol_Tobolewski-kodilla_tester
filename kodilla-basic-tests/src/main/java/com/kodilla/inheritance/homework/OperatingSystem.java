@@ -15,12 +15,7 @@ public class OperatingSystem {
         System.out.println("Turning off");
     }
 
-    public int getWin(){
+    public int getYear(){
         return year;
     }
-
-    public int getMac(){
-        return year;
-    }
-
 }

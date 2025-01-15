@@ -9,4 +9,8 @@ public class MacIo extends OperatingSystem {
     public void turnOff(){
         System.out.println("trying to  turn off...");
     }
+
+    public void turnOn() {
+        System.out.println("Turned on!");
+    }
 }

@@ -9,4 +9,7 @@ public class Windows extends OperatingSystem {
     public void turnOn() {
         System.out.println("trying to turn on...");
     }
+    public void turnOff() {
+        System.out.println("Turned OFF!");
+    }
 }

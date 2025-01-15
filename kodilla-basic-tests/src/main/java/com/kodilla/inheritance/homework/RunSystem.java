@@ -3,12 +3,14 @@ package com.kodilla.inheritance.homework;
 public class RunSystem {
     public static void main(String[] args){
 
-        Windows windows = new Windows(1997);
-        System.out.println("Year of release was " + windows.getWin());
+        OperatingSystem windows = new Windows(1997);
+        System.out.println("Year of release was " + windows.getYear());
         windows.turnOn();
+        windows.turnOff();
 
-        MacIo macio = new MacIo(1991);
-        System.out.println("Year of release was " + macio.getMac());
+        OperatingSystem macio = new MacIo(1992);
+        System.out.println("Year of release was " + macio.getYear());
         macio.turnOff();
+        macio.turnOn();
     }
 }
