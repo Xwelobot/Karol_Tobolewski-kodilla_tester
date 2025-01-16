@@ -13,8 +13,11 @@ public class Person {
 
     public String Responsibilities() {
         StringBuilder responsibilities = new StringBuilder("Responsibilities: ");
-        for (ResponsibilityEnum responsibility : job.responsibilities()) {
-            responsibilities.append(responsibility).append(", ");
+        var array = job.responsibilities();
+        for (int i = 0; i < array.length; i++) {
+            responsibilities.append(array[i]);
+            if(i < array.length -1)
+                responsibilities.append(", ");
         }
         return responsibilities.toString();
     }
