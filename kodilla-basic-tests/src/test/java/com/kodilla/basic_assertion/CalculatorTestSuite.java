@@ -9,18 +9,21 @@ public class CalculatorTestSuite {
 
     @Test
     public void testSum() {
-        int a = 5;
-        int b = 8;
-        int sumResult = calculator.sum(a, b);
-        assertEquals(13, sumResult);
+        double a = 5.6;
+        double b = 5.8;
+
+        double sumResult = calculator.sum(a, b);
+        assertEquals(11.4, sumResult, 0.1);
+        System.out.println(sumResult);
     }
     @Test
     public void testSubstract() {
-        double a = 10.3;
-        double b = 5.4;
+        double a = 5.6;
+        double b = 5.8;
 
         double substractResult = calculator.substract(a,b);
-        assertEquals(4.9, substractResult, 0.1);
+        assertEquals(-0.2, substractResult, 0.1);
+        System.out.println(substractResult);
     }
     @Test
     public void testSquare() {
@@ -28,5 +31,21 @@ public class CalculatorTestSuite {
 
         double squareResult = calculator.square(a);
         assertEquals(12.25, squareResult, 0.1);
+    }
+    @Test
+    public void testSquareZero() {
+        double a = 0;
+
+        double squareResultZero = calculator.square(a);
+        assertEquals(0, squareResultZero, 0);
+    }
+    @Test
+    public void testSquareMinusZero() {
+        double a = -2;
+
+        double squareResultMinusZero = calculator.square(a);
+        assertEquals(4, squareResultMinusZero, 0.1);
+
+        System.out.println(squareResultMinusZero);
     }
 }
