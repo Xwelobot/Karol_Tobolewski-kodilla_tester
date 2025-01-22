@@ -2,23 +2,37 @@ package com.kodilla.bank.homework;
 
 public class CashMachine {
 
-    private double[] transactions;
+    private int[] transactions;
+    private int size;
 
     public CashMachine() {
-        this.transactions = transactions;
+        this.transactions = new int[0];
+        this.size = 0;
     }
 
-    public double getSaldo() {
-        double saldo = 0;
-        for(double transaction : transactions) {
-            saldo += transactions;
+    public void add(int transaction) {
+        this.size++;
+        int[] tr = new int[this.size];
+        System.arraycopy(transactions,0,tr ,0, transactions.length);
+        tr[this.size - 1] = transaction;
+        this.transactions = tr;
+    }
+
+    public int[] getTr() {
+        return transactions;
+    }
+
+    public int getSaldo() {
+        int saldo = 0;
+        for(int transaction : transactions) {
+            saldo = saldo + transaction;
         }
         return saldo;
     }
 
     public int getTransactionIn() {
         int count = 0;
-        for (double transaction : transactions) {
+        for (int transaction : transactions) {
             if (transaction > 0) {
                 count++;
             }
@@ -28,7 +42,7 @@ public class CashMachine {
 
     public int getTransactionOut() {
         int count = 0;
-        for (double transaction : transactions) {
+        for (int transaction : transactions) {
             if (transaction < 0) {
                 count++;
             }
