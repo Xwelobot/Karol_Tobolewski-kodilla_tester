@@ -29,7 +29,7 @@ public class BankTestSuite {
         cm.add(-100);
 
         int countOfTr = cm.getTransactionIn();
-        assertEquals(countOfTr, 1);
+        assertEquals(countOfTr, 0);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class BankTestSuite {
         cm.add(100);
 
         int vaules = cm.getTransactionOut();
-        assertEquals(vaules, 1);
+        assertEquals(vaules, 0);
     }
 
     @Test
@@ -83,6 +83,6 @@ public class BankTestSuite {
         CashMachine machine = new CashMachine();
 
         machine.add(10);
-        assertEquals(0, machine.getAverageIn(), 0.01);
+        assertEquals(10, machine.getAverageIn(), 0.01);
     }
 }
