@@ -17,12 +17,18 @@ public class CashMachineTestSuite {
     @Test
     public void shouldGetAverageIn(){
         CashMachine machine = new CashMachine();
+
+        machine.add(200);
+        machine.add(100);
         assertEquals(150, machine.getAverageIn(), 0.01);
     }
 
     @Test
     public void shouldGetAverageOut(){
         CashMachine machine = new CashMachine();
+
+        machine.add(-100);
+        machine.add(-50);
         assertEquals(-75, machine.getAverageOut(), 0.01);
     }
 
@@ -32,8 +38,8 @@ public class CashMachineTestSuite {
         cm.add(100);
         cm.add(200);
 
-        int[] values = cm.getTransactionIn();
-        assertEquals(values.length, 2);
+        int countOfTr = cm.getTransactionIn();
+        assertEquals(countOfTr, 2);
     }
 
     @Test
@@ -42,8 +48,8 @@ public class CashMachineTestSuite {
         cm.add(-100);
         cm.add(-50);
 
-        int[] values = cm.getTransactionOut();
-        assertEquals(values.length, 2);
+        int values = cm.getTransactionOut();
+        assertEquals(values, 2);
 
     }
 }
