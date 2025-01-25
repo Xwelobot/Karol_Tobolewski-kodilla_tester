@@ -13,4 +13,7 @@ public class UserDialogs {
             System.out.println("Name is too short. Try again.");
         }
     }
+    public static String getWhatColour() {
+        return "G";
+    }
 }

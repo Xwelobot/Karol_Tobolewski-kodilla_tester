@@ -1,5 +1,7 @@
 package com.kodilla.basic_assertion;
 
+import static com.kodilla.basic_assertion.ResultChecker.assertEquals;
+
 public class Application {
     public static void main(String[] args) {
 
@@ -9,7 +11,7 @@ public class Application {
 
         double sumResult = calculator.sum(a, b);
 
-        boolean correct = ResultChecker.assertEquals(13, sumResult);
+        boolean correct = assertEquals(13, sumResult);
 
         if(correct){
             System.out.println("Metoda sum działa poprawnie dla liczb " + a + " i " + b);
@@ -19,7 +21,7 @@ public class Application {
 
         double substractResult = calculator.substract(a,b);
 
-        boolean correctTwo = ResultChecker.assertEquals(-3, substractResult);
+        boolean correctTwo = assertEquals(-3.0, substractResult);
 
         if(correctTwo) {
             System.out.println("Metoda poprawnie obliczyla dzialanie odejmowania ktore wynioslo " + substractResult);
@@ -29,7 +31,7 @@ public class Application {
 
         double squareResult = calculator.square(a);
 
-        boolean correctThree = ResultChecker.assertEquals(25, squareResult);
+        boolean correctThree = assertEquals(25, squareResult);
 
         if(correctThree) {
             System.out.println("Metoda poprawnie obliczyla dzialanie potegowania ktore wynioslo " + squareResult);
