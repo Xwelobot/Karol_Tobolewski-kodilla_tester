@@ -1,5 +1,8 @@
 package com.kodilla.collections.homework;
 
+import java.util.Random;
+
+
 public class CarRace {
     public static void main(String[] args) {
         Opel opel = new Opel(150, "Opel");
@@ -8,7 +11,7 @@ public class CarRace {
         Mustang mustang = new Mustang(200, "Mustang");
         doRace(mustang);
 
-        BMW bmw = new BMW(180, "BMW");
+        BMW bmw = new BMW(200, "BMW");
         doRace(bmw);
     }
 

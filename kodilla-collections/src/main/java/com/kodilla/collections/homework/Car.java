@@ -4,7 +4,7 @@ public interface Car {
 
     String getModel();
 
-    int getSpeed();
+    double getSpeed();
 
     void increaseSpeed();
 

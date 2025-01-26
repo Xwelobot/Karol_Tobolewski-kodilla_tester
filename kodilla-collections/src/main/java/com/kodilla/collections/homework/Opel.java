@@ -1,20 +1,20 @@
 package com.kodilla.collections.homework;
 
 public class Opel implements Car{
-    private int speed;
+    private double speed;
     private String model;
 
     public String getModel(){
         return this.model;
     }
 
-    public Opel(int speed, String name){
+    public Opel(double speed, String name){
         this.speed = speed;
         this.model = name;
     }
 
     @Override
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 

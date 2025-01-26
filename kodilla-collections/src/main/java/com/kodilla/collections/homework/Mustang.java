@@ -1,11 +1,11 @@
 package com.kodilla.collections.homework;
 
 public class Mustang implements Car{
-    private int speed;
+    private double speed;
     private String model;
 
 
-    public Mustang(int speed, String name){
+    public Mustang(double speed, String name){
         this.speed = speed;
         this.model = name;
     }
@@ -16,7 +16,7 @@ public class Mustang implements Car{
     }
 
     @Override
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
@@ -26,8 +26,5 @@ public class Mustang implements Car{
     }
 
     @Override
-    public void decreaseSpeed() {
-        this.speed -= 35;
-
-    }
+    public void decreaseSpeed() { this.speed -= 35; }
 }

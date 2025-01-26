@@ -1,10 +1,10 @@
 package com.kodilla.collections.homework;
 
 public class BMW implements Car{
-    private int speed;
+    private double speed;
     private String model;
 
-    public BMW(int speed, String name){
+    public BMW(double speed, String name){
         this.speed = speed;
         this.model = name;
     }
@@ -15,7 +15,7 @@ public class BMW implements Car{
     }
 
     @Override
-    public int getSpeed(){
+    public double getSpeed(){
         return speed;
     }
 
