@@ -1,4 +1,4 @@
-package com.kodilla.collections.interfaces.homework;
+package com.kodilla.collections.homework;
 
 public class Mustang implements Car{
     private int speed;
