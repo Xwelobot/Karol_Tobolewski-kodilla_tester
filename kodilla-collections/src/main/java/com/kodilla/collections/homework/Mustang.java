@@ -4,6 +4,13 @@ public class Mustang implements Car{
     private double speed;
     private String model;
 
+    @Override
+    public String toString() {
+        return "Mustang{" +
+                "speed=" + speed +
+                ", model='" + model + '\'' +
+                '}';
+    }
 
     public Mustang(double speed, String name){
         this.speed = speed;

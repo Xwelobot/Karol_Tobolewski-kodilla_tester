@@ -4,6 +4,14 @@ public class Opel implements Car{
     private double speed;
     private String model;
 
+    @Override
+    public String toString() {
+        return "Opel{" +
+                "speed=" + speed +
+                ", model='" + model + '\'' +
+                '}';
+    }
+
     public String getModel(){
         return this.model;
     }
@@ -28,3 +36,4 @@ public class Opel implements Car{
         this.speed -= 25;
     }
 }
+
