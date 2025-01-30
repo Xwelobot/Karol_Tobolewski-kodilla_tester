@@ -7,6 +7,7 @@ public class Bank {
     public Bank(CashMachine[] cashMachines) {
             this.cashMachines = cashMachines;
     }
+
     public int getSaldoOfAllCashMachine() {
         int totalSaldo = 0;
         for (CashMachine machine : cashMachines) {

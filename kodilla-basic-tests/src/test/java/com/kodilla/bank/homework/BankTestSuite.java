@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BankTestSuite {
 
+
     @Test
     public void shouldHaveAllSaldoLength() {
         CashMachine cm = new CashMachine();
@@ -14,75 +15,133 @@ public class BankTestSuite {
     }
 
     @Test
-    public void shouldAddTwoTransactionsIn() {
-        CashMachine cm = new CashMachine();
-        cm.add(100);
-        cm.add(200);
+    public void shouldHaveAnySaldoLength(){
+        CashMachine bankomat1 = new CashMachine();
+        bankomat1.add(100);
 
-        int countOfTr = cm.getTransactionIn();
-        assertEquals(countOfTr, 2);
+        CashMachine bankomat2 = new CashMachine();
+        bankomat2.add(100);
+        bankomat2.add(200);
+
+        CashMachine bankomat3 = new CashMachine();
+        bankomat3.add(100);
+        bankomat3.add(100);
+        bankomat3.add(100);
+
+        CashMachine[] bankomaty = new CashMachine[]{
+                bankomat1, bankomat2, bankomat3
+        };
+
+        Bank bank = new Bank(bankomaty);
+
+        int saldoOfAll = bank.getSaldoOfAllCashMachine();
+
+        assertEquals(700, saldoOfAll);
     }
 
     @Test
-    public void shouldAddTwoTransactionsInBelow(){
-        CashMachine cm = new CashMachine();
-        cm.add(-100);
+    public void TrIn() {
+        CashMachine bankomat3 = new CashMachine();
+        bankomat3.add(100);
+        bankomat3.add(100);
+        bankomat3.add(-100);
 
-        int countOfTr = cm.getTransactionIn();
-        assertEquals(countOfTr, 0);
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        Bank bank = new Bank(bankomaty);
+
+        int trIn = bank.getTransactionIn();
+
+        assertEquals(2, trIn);
     }
 
     @Test
-    public void shouldAddTwoTransactionsOut() {
-        CashMachine cm = new CashMachine();
-        cm.add(-100);
-        cm.add(-50);
+    public void TrInZero() {
+        CashMachine bankomat3 = new CashMachine();
+        bankomat3.add(-100);
+        bankomat3.add(0);
+        bankomat3.add(-100);
 
-        int values = cm.getTransactionOut();
-        assertEquals(values, 2);
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        Bank bank = new Bank(bankomaty);
 
+        int trIn = bank.getTransactionIn();
+
+        assertEquals(0, trIn);
     }
 
     @Test
-    public void shouldAddTwoTransactionsOutAbove() {
-        CashMachine cm = new CashMachine();
-        cm.add(100);
+    public void TrOut() {
+        CashMachine bankomat3 = new CashMachine();
+        bankomat3.add(-100);
+        bankomat3.add(100);
+        bankomat3.add(-100);
 
-        int vaules = cm.getTransactionOut();
-        assertEquals(vaules, 0);
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        Bank bank = new Bank(bankomaty);
+
+        int trOut = bank.getTransactionOut();
+
+        assertEquals(2, trOut);
     }
 
     @Test
-    public void shouldGetAverageIn(){
-        CashMachine machine = new CashMachine();
+    public void TrOutZero() {
+        CashMachine bankomat3 = new CashMachine();
+        bankomat3.add(100);
+        bankomat3.add(100);
+        bankomat3.add(0);
 
-        machine.add(200);
-        machine.add(100);
-        assertEquals(150, machine.getAverageIn(), 0.01);
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        Bank bank = new Bank(bankomaty);
+
+        int trOutZero = bank.getTransactionOut();
+
+        assertEquals(0, trOutZero);
     }
 
     @Test
-    public void shouldGetAverageInZeroTr(){
-        CashMachine machine = new CashMachine();
+    public void AvgIn() {
+        CashMachine bankomat3 = new CashMachine();
+        bankomat3.add(100);
+        bankomat3.add(150);
+        bankomat3.add(30);
 
-        machine.add(0);
-        assertEquals(0, machine.getAverageIn(), 0.01);
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        Bank bank = new Bank(bankomaty);
+
+        double avgIn = bank.getAverageIn();
+
+        assertEquals(93.3, avgIn, 0.1);
     }
 
     @Test
-    public void shouldGetAverageOut(){
-        CashMachine machine = new CashMachine();
+    public void AvgInMinus() {
+        CashMachine bankomat3 = new CashMachine();
+        bankomat3.add(100);
+        bankomat3.add(-200);
+        bankomat3.add(30);
 
-        machine.add(-100);
-        machine.add(-50);
-        assertEquals(-75, machine.getAverageOut(), 0.01);
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        Bank bank = new Bank(bankomaty);
+
+        double avgInMinus = bank.getAverageIn();
+
+        assertEquals(65, avgInMinus, 0.1);
     }
 
     @Test
-    public void shouldGetAverageOutZeroTr(){
-        CashMachine machine = new CashMachine();
+    public void AvgOut() {
+        CashMachine bankomat3 = new CashMachine();
+        bankomat3.add(100);
+        bankomat3.add(-200);
+        bankomat3.add(-37);
 
-        machine.add(10);
-        assertEquals(10, machine.getAverageIn(), 0.01);
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        Bank bank = new Bank(bankomaty);
+
+        double avgOut = bank.getAverageOut();
+
+        assertEquals(-118.5, avgOut, 0.1);
     }
+
 }
