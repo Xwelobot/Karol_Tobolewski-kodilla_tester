@@ -46,12 +46,16 @@ public class BankTestSuite {
         bankomat3.add(100);
         bankomat3.add(-100);
 
-        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        CashMachine bankomat2 = new CashMachine();
+        bankomat2.add(100);
+        bankomat2.add(200);
+
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3, bankomat2};
         Bank bank = new Bank(bankomaty);
 
         int trIn = bank.getTransactionIn();
 
-        assertEquals(2, trIn);
+        assertEquals(4, trIn);
     }
 
     @Test
@@ -61,7 +65,11 @@ public class BankTestSuite {
         bankomat3.add(0);
         bankomat3.add(-100);
 
-        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        CashMachine bankomat2 = new CashMachine();
+        bankomat2.add(-100);
+        bankomat2.add(-200);
+
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3, bankomat2};
         Bank bank = new Bank(bankomaty);
 
         int trIn = bank.getTransactionIn();
@@ -76,12 +84,16 @@ public class BankTestSuite {
         bankomat3.add(100);
         bankomat3.add(-100);
 
-        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        CashMachine bankomat2 = new CashMachine();
+        bankomat2.add(100);
+        bankomat2.add(-200);
+
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3, bankomat2};
         Bank bank = new Bank(bankomaty);
 
         int trOut = bank.getTransactionOut();
 
-        assertEquals(2, trOut);
+        assertEquals(3, trOut);
     }
 
     @Test
@@ -91,7 +103,11 @@ public class BankTestSuite {
         bankomat3.add(100);
         bankomat3.add(0);
 
-        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        CashMachine bankomat2 = new CashMachine();
+        bankomat2.add(100);
+        bankomat2.add(200);
+
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3, bankomat2};
         Bank bank = new Bank(bankomaty);
 
         int trOutZero = bank.getTransactionOut();
@@ -102,41 +118,50 @@ public class BankTestSuite {
     @Test
     public void AvgIn() {
         CashMachine bankomat3 = new CashMachine();
-        bankomat3.add(100);
         bankomat3.add(150);
         bankomat3.add(30);
 
-        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        CashMachine bankomat2 = new CashMachine();
+        bankomat2.add(100);
+
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3, bankomat2};
         Bank bank = new Bank(bankomaty);
 
         double avgIn = bank.getAverageIn();
 
-        assertEquals(93.3, avgIn, 0.1);
+        assertEquals(95.0, avgIn, 0.1);
     }
 
     @Test
     public void AvgInMinus() {
         CashMachine bankomat3 = new CashMachine();
-        bankomat3.add(100);
         bankomat3.add(-200);
-        bankomat3.add(30);
+        bankomat3.add(100);
 
-        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        CashMachine bankomat2 = new CashMachine();
+        bankomat2.add(100);
+        bankomat2.add(-200);
+
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3, bankomat2};
         Bank bank = new Bank(bankomaty);
 
         double avgInMinus = bank.getAverageIn();
 
-        assertEquals(65, avgInMinus, 0.1);
+        assertEquals(100, avgInMinus, 0.1);
     }
 
     @Test
     public void AvgOut() {
         CashMachine bankomat3 = new CashMachine();
         bankomat3.add(100);
-        bankomat3.add(-200);
+        bankomat3.add(200);
         bankomat3.add(-37);
 
-        CashMachine[] bankomaty = new CashMachine[]{ bankomat3};
+        CashMachine bankomat2 = new CashMachine();
+        bankomat2.add(100);
+        bankomat2.add(-200);
+
+        CashMachine[] bankomaty = new CashMachine[]{ bankomat3, bankomat2};
         Bank bank = new Bank(bankomaty);
 
         double avgOut = bank.getAverageOut();
