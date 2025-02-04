@@ -10,14 +10,15 @@ class FlightFinderTestSuite {
 
     @Test
     public void testFindFlightsFrom() {
-        FlightRepository flightRepository = new FlightRepository();
 
-        flightRepository.add
-
-        List<Flight> result = flight.findFlightsFrom("Londyn");
     }
 
     @Test
     public void testFindFlightsTo() {
+    }
+
+    @Test
+    public void testFlightsTable() {
+
     }
 }

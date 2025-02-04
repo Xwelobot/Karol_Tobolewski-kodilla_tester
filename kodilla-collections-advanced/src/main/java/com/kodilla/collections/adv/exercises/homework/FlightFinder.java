@@ -5,22 +5,37 @@ import com.kodilla.collections.adv.exercises.dictionary.EnglishWord;
 import java.util.*;
 
 public class FlightFinder {
-    Map<String, List<Flight>> flightRepository = new HashMap<>();
+    private Map<String, List<Flight>> flights;
 
-    public List<Flight> findFlightsFrom(String departure){
-         return flightRepository.getOrDefault(departure, Collections.emptyList());
+    public FlightFinder(Map<String, List<Flight>> flights) {
+        this.flights = flights;
+    }
+
+    public List<Flight> findFlightsFrom(String departure) {
+        List<Flight> result = new ArrayList<>();
+
+        for (List<Flight> flightsList : flights.values()) {
+            for (Flight flight : flightsList) {
+                if (flight.getDeparture().equals(departure)) {
+                    result.add(flight);
+                }
+            }
+        }
+        return result;
 
     }
 
     public List<Flight> findFlightsTo(String arrival){
-        return flightRepository.getOrDefault(arrival, Collections.emptyList());
+        List<Flight> result = new ArrayList<>();
+
+        for(List<Flight> flightList : flights.values()){
+            for ( Flight flight : flightList) {
+                if ( flight.getArrival().equals(arrival)) {
+                    result.add(flight);
+                }
+            }
+        }
+        return result;
     }
 
-    public int size(){
-        return flightRepository.size();
-    }
-
-    public void addFlight(String departure, FlightRepository flightRepository){
-//        List<FlightRepository> flightRepositories = flightRepository
-    }
 }

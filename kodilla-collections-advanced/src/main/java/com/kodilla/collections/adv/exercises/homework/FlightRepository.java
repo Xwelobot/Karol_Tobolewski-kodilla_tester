@@ -19,4 +19,7 @@ public class FlightRepository {
 
         return flightRepository;
     }
+    public int size(){
+        return getFlightsTable().size();
+    }
 }
