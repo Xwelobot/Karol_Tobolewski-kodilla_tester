@@ -11,7 +11,7 @@ class FlightFinderTestSuite {
 
     @Test
     public void testFindFlightsFrom() {
-        Map<String, List<Flight>> flights = FlightRepository.getFlightsTable();
+        List<Flight> flights = FlightRepository.getFlightsTable();
 
         FlightFinder flightFinder = new FlightFinder(flights);
 
@@ -20,12 +20,12 @@ class FlightFinderTestSuite {
         for (Flight flight : flightsFromWarsaw) {
             System.out.println(flight);
         }
-
+        assertEquals(2, flightsFromWarsaw.size());
     }
 
     @Test
     public void testFindFlightsFrom2() {
-        Map<String, List<Flight>> flights = FlightRepository.getFlightsTable();
+        List<Flight> flights = FlightRepository.getFlightsTable();
 
         FlightFinder flightFinder = new FlightFinder(flights);
 
@@ -34,12 +34,12 @@ class FlightFinderTestSuite {
         for (Flight flight : flightsFromBerlin) {
             System.out.println(flight);
         }
-
+        assertEquals(0, flightsFromBerlin.size());
     }
 
     @Test
     public void testFindFlightsTo() {
-        Map<String, List<Flight>> flights = FlightRepository.getFlightsTable();
+        List<Flight> flights = FlightRepository.getFlightsTable();
 
         FlightFinder flightFinder = new FlightFinder(flights);
 
@@ -48,11 +48,12 @@ class FlightFinderTestSuite {
         for ( Flight flight : flightsToGdansk) {
             System.out.println(flight);
         }
+        assertEquals(1, flightsToGdansk.size());
     }
 
     @Test
     public void testFindFlightsTo2() {
-        Map<String, List<Flight>> flights = FlightRepository.getFlightsTable();
+        List<Flight> flights = FlightRepository.getFlightsTable();
 
         FlightFinder flightFinder = new FlightFinder(flights);
 
@@ -61,5 +62,6 @@ class FlightFinderTestSuite {
         for ( Flight flight : flightsToKrakow) {
             System.out.println(flight);
         }
+        assertEquals(0, flightsToKrakow.size());
     }
 }

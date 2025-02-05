@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FlightRepository {
-    public static Map<String, List<Flight>> getFlightsTable() {
-        Map<String, List<Flight>> flightRepository = new HashMap<>();
+    public static List<Flight> getFlightsTable() {
 
         List<Flight> flights = new ArrayList<>();
         flights.add(new Flight("Londyn", "Warszawa"));
@@ -15,11 +14,10 @@ public class FlightRepository {
         flights.add(new Flight("Kraków", "Gdansk"));
         flights.add(new Flight("Warszawa", "Berlin"));
 
-        flightRepository.put("Loty", flights);
+//        flights.put(flights);
 
-        return flightRepository;
+        return flights;
     }
-    public int size(){
-        return getFlightsTable().size();
-    }
+
+
 }
