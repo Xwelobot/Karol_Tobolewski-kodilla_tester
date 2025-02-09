@@ -26,7 +26,7 @@ class UsersManagerTest {
         users.add("Gus Firing");
         users.add("Mike Ehrmantraut");
 
-        List<String> oldAge = UsersManager.filterAgeOfUsers();
+        List<String> oldAge = UsersManager.filterAgeOfUsers(44);
         assertEquals(users, oldAge);
     }
 
@@ -38,5 +38,26 @@ class UsersManagerTest {
 
         List<String> post = UsersManager.filterNumberOfPosts();
         assertEquals(users, post);
+    }
+
+    @Test
+    public void testFilterAgeAbove20(){
+        List<String> users = new ArrayList<>();
+        users.add("Walter White");
+        users.add("Gus Firing");
+        users.add("Mike Ehrmantraut");
+
+        List<String> oldAge = UsersManager.filterAgeOfUsers(20);
+        assertEquals(users, oldAge);
+    }
+
+    @Test
+    public void testFilterAgeAbove50(){
+        List<String> users = new ArrayList<>();
+        users.add("Mike Ehrmantraut");
+
+
+        List<String> oldAge = UsersManager.filterAgeOfUsers(50);
+        assertEquals(users, oldAge);
     }
 }

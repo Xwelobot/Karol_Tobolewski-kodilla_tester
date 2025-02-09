@@ -7,7 +7,7 @@ public class UsersManager {
     public static void main(String[] args) {
         List<String> chemistGroupUsernames = filterChemistGroupUsernames();
         System.out.println(chemistGroupUsernames);
-        List<String> ageAbove44 = filterAgeOfUsers();
+        List<String> ageAbove44 = filterAgeOfUsers(44);
         System.out.println(ageAbove44);
         List<String> userWithNoPosts = filterNumberOfPosts();
         System.out.println(userWithNoPosts);
@@ -26,10 +26,10 @@ public class UsersManager {
         return user.getUsername();
     }
 
-    public static List<String> filterAgeOfUsers() {
+    public static List<String> filterAgeOfUsers(int age) {
         List<String> userages = UsersRepository.getUsersList()
                 .stream()
-                .filter(age -> age.getAge() > 44)
+                .filter(a -> a.getAge() > age)
                 .map(UsersManager::getUserName)
                 .collect(Collectors.toList());
         return userages;
