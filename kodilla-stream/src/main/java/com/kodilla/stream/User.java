@@ -42,4 +42,14 @@ public class User {
     public String getGroup() {
         return group;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", age=" + age +
+                ", numberOfPost=" + numberOfPost +
+                ", group='" + group + '\'' +
+                '}';
+    }
 }
