@@ -20,6 +20,5 @@ public class Warehouse {
         } else {
             throw new OrderDoesntExistException();
         }
-
     }
 }
