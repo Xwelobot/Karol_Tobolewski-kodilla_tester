@@ -10,6 +10,7 @@ public class Person {
         this.weightInKilogram = weightInKilogram;
     }
 
+
     public String getBMI() {
         double bmi = weightInKilogram / (heightInMeters * heightInMeters);
         if (bmi < 15) {
@@ -34,5 +35,13 @@ public class Person {
             return "Obese Class V (Super Obese)";
         }
         return "Obese Class VI (Hyper Obese)";
+    }
+
+    public double getHeightInMeters() {
+        return heightInMeters;
+    }
+
+    public double getWeightInKilogram() {
+        return weightInKilogram;
     }
 }
