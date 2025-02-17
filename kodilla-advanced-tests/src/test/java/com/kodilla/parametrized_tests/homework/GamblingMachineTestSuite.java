@@ -4,14 +4,18 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class GamblingMachineTestSuite {
+    private Set<Integer> numbers(String numbersStr) {
+        return Set.of(numbersStr.split(","))
+                .stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toSet());
+    }
 
     private GamblingMachine gamblingMachine = new GamblingMachine();
 
@@ -28,10 +32,12 @@ class GamblingMachineTestSuite {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/canNumberInScopeApply.csv",delimiter = ':', numLinesToSkip = 1)
-    public void canNumberInScopeApply(Set<Integer> numbers, int ExpectedWin ) throws InvalidNumbersException {
+    @CsvFileSource(resources = "/canNumberInScopeApply.csv", numLinesToSkip = 1)
+    public void canNumberInScopeApply(String userNumbersStr, int expectedWins) throws InvalidNumbersException {
 
-        int result = gamblingMachine.howManyWins(numbers);
-        assertEquals(ExpectedWin, result);
+        Set<Integer> number = numbers(userNumbersStr);
+        int wins = gamblingMachine.howManyWins(number);
+        assertEquals(expectedWins, wins);
+
     }
 }
