@@ -1,5 +1,6 @@
 package com.kodilla.execution_model.homework;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,9 +15,9 @@ public class Shop {
         this.orders.add(order);
     }
 
-    public List<Order> getOrdersByDateRange(Date startDate, Date endDate) {
+    public List<Order> getOrdersByDateRange(LocalDate startDate, LocalDate endDate) {
         return orders.stream()
-                .filter(order -> !order.getDate().before(startDate) && !order.getDate().after(endDate))
+                .filter(order -> !order.getDate().isBefore(startDate) && !order.getDate().isAfter(endDate))
                 .collect(Collectors.toList());
     }
 

@@ -5,12 +5,12 @@ import java.util.Date;
 
 public class Order {
     private double value;
-    private Date date;
+    private LocalDate date;
     private String login;
 
-    public Order(double value, Date date, String login) {
+    public Order(double value, LocalDate date, String login) {
         this.value = value;
-        this.date = new Date();
+        this.date = date;
         this.login = login;
     }
 
@@ -18,7 +18,7 @@ public class Order {
         return value;
     }
 
-    public Date getDate(){
+    public LocalDate getDate(){
         return date;
     }
 
