@@ -26,8 +26,6 @@ class ShopTestSuite {
     Order order2 = new Order(221.37, date2, "user2");
     Order order3 = new Order(321.37, date3, "user3");
 
-    ShopTestSuite() throws ParseException {
-    }
 
     @BeforeEach
     public void initializeShop(){
