@@ -14,8 +14,8 @@ import java.util.List;
 class MonitorServicesTest {
 
     private MonitorServices monitorServices;
-//    private User user1 = Mockito.mock(User.class);
-//    private User user2 = Mockito.mock(User.class);
+//    User user1 = Mockito.mock(User.class);
+//    User user2 = Mockito.mock(User.class);
     private Notification notification;
 
     @BeforeEach

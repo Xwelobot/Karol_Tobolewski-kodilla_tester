@@ -45,49 +45,8 @@ public class MonitorServices {
         }
     }
 
-    public void addUser(Long userId, String userName) {
-        User user = new User() {
-            private Long id = userId;
-            private String name = userName;
-            private List<String> locations = new ArrayList<>();
-
-            @Override
-            public Long getId() {
-                return id;
-            }
-
-            @Override
-            public String getUserName() {
-                return name;
-            }
-
-            @Override
-            public void addLocation(String location) {
-                locations.add(location);
-            }
-
-            @Override
-            public void removeLocation(String location) {
-                locations.remove(location);
-            }
-
-            @Override
-            public void removeAllLocations() {
-                locations.clear();
-            }
-
-            @Override
-            public List<String> getLocations() {
-                return locations;
-            }
-
-            @Override
-            public void receive(Notification notification) {
-                System.out.println("User " + name + " received notification: " + notification.getMessage());
-            }
-        };
-
-        userMap.put(user, new ArrayList<>());
+    public void addUser(User user) {
+        this.userMap.put(user, );
     }
 
     public void sendNotificationToAll(Notification message) {
