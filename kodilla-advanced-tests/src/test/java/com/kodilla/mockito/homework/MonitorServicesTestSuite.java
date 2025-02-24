@@ -1,111 +1,95 @@
 package com.kodilla.mockito.homework;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.*;
+import com.kodilla.mockito.homework.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class MonitorServicesTestSuite {
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+class MonitorServicesTest {
 
     private MonitorServices monitorServices;
-    private User user;
+//    private User user1 = Mockito.mock(User.class);
+//    private User user2 = Mockito.mock(User.class);
     private Notification notification;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         monitorServices = new MonitorServices();
-        user = mock(User.class);
+
+        monitorServices.addUser(1L, "John");
+        monitorServices.addUser(2L, "Jane");
+
         notification = mock(Notification.class);
+        when(notification.getMessage()).thenReturn("Test Notification");
     }
 
     @Test
-    public void testAddUser() {
-        Long userId = 1L;
-        String userName = "Test User";
+    void testUserCanRegisterToLocationAndReceiveNotifications() {
+        monitorServices.registerUserToLocation(1L, "New York");
 
+        monitorServices.sendNotificationToLocation("New York", notification);
 
-        monitorServices.addUser(userId, userName);
-
-        assertNotNull(monitorServices.userMap.get(userId));
+        verify(monitorServices, times(1)).sendNotification(notification);
+        verify(monitorServices, never()).sendNotification(notification);
     }
 
     @Test
-    public void testRegisterUserToLocation() {
-        Long userId = 1L;
-        String location = "Warsaw";
+    void testUserCanUnsubscribeFromLocation() {
+        monitorServices.registerUserToLocation(1L, "New York");
 
-        monitorServices.addUser(userId, "Test User");
+        monitorServices.unsubscribeUserFromLocation(1L, "New York");
 
-        monitorServices.registerUserToLocation(userId, location);
+        monitorServices.sendNotificationToLocation("New York", notification);
 
-        verify(user, times(1)).addLocation(location);
+        verify(monitorServices, never()).sendNotification(notification);
     }
 
     @Test
-    public void testSendNotificationToLocation() {
-        Long userId = 1L;
-        String location = "Warsaw";
-        String message = "Test message";
+    void testUserCanUnsubscribeFromAllLocations() {
+        monitorServices.registerUserToLocation(1L, "New York");
+        monitorServices.registerUserToLocation(1L, "Los Angeles");
 
-        monitorServices.addUser(userId, "Test User");
+        monitorServices.unsubscribeUserFromAllLocations(1L);
 
-        monitorServices.registerUserToLocation(userId, location);
+        monitorServices.sendNotificationToLocation("New York", notification);
+        monitorServices.sendNotificationToLocation("Los Angeles", notification);
 
-        monitorServices.sendNotificationToLocation(location, notification);
-
-        verify(user, times(1)).receive(notification);
+        verify(monitorServices, never()).sendNotification(notification);
     }
 
     @Test
-    public void testUnsubscribeUserFromLocation() {
-        Long userId = 1L;
-        String location = "Warsaw";
+    void testSendNotificationToLocation() {
+        monitorServices.registerUserToLocation(1L, "New York");
+        monitorServices.registerUserToLocation(2L, "Los Angeles");
 
-        monitorServices.addUser(userId, "Test User");
+        monitorServices.sendNotificationToLocation("New York", notification);
 
-        monitorServices.registerUserToLocation(userId, location);
-
-        monitorServices.unsubscribeUserFromLocation(userId, location);
-
-        verify(user, times(1)).removeLocation(location);
+        verify(monitorServices, times(1)).sendNotification(notification);
+        verify(monitorServices, never()).sendNotification(notification);
     }
 
     @Test
-    public void testSendNotificationToAll() {
-        Long userId = 1L;
-        Notification notification = Mockito.mock(Notification.class);
-
-        monitorServices.addUser(userId, "Test User");
-
+    void testSendNotificationToAllUsers() {
         monitorServices.sendNotificationToAll(notification);
 
-        verify(user, times(1)).receive(notification);
+        verify(monitorServices, times(1)).sendNotificationToAll(notification);
     }
 
     @Test
-    public void testRemoveUser() {
-        Long userId = 1L;
+    void testRemoveLocation() {
+        monitorServices.registerUserToLocation(1L, "New York");
+        monitorServices.registerUserToLocation(2L, "New York");
 
-        monitorServices.addUser(userId, "Test User");
+        monitorServices.removeLocation("New York");
 
-        monitorServices.removeUser(userId);
+        monitorServices.sendNotificationToLocation("New York", notification);
 
-        assertNull(monitorServices.userMap.get(userId));
-    }
-
-    @Test
-    public void testRemoveLocation() {
-        Long userId = 1L;
-        String location = "Warsaw";
-
-        monitorServices.addUser(userId, "Test User");
-
-        monitorServices.registerUserToLocation(userId, location);
-
-        monitorServices.removeLocation(location);
-
-        verify(user, times(0)).removeLocation(location);
+        verify(monitorServices, never()).sendNotification(notification);
     }
 }
