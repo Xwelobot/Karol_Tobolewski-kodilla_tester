@@ -9,59 +9,36 @@ public class MonitorServices {
 
     Map<User, List<String>> userMap = new HashMap<>();
 
-    public void registerUserToLocation(Long userId, String location) {
-        User user = userMap.keySet().stream()
-                .filter(u -> u.getId().equals(userId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("No user found"));
-
-        List<String> locations = userMap.get(user);
+    public void registerUserToLocation(User user, String location) {
+        List<String> locations = userMap.getOrDefault(user, new ArrayList<>());
         if (!locations.contains(location)) {
             locations.add(location);
+            userMap.put(user, locations);
         }
     }
 
-    public void unsubscribeUserFromLocation(Long userId, String location) {
-        User user = userMap.keySet().stream()
-                .filter(u -> u.getId().equals(userId))
-                .findFirst()
-                .orElse(null);
-
+    public void unsubscribeUserFromLocation(User user, String location) {
         if (user != null) {
-            List<String> locations = userMap.get(user);
+            List<String> locations = userMap.getOrDefault(user, new ArrayList<>());
             locations.remove(location);
+            userMap.put(user, locations);
         }
     }
 
-    public void unsubscribeUserFromAllLocations(Long userId) {
-        User user = userMap.keySet().stream()
-                .filter(u -> u.getId().equals(userId))
-                .findFirst()
-                .orElse(null);
-
-        if (user != null) {
-            List<String> locations = userMap.get(user);
+    public void unsubscribeUserFromAllLocations(User user) {
+            if (user != null) {
+            List<String> locations = userMap.getOrDefault(user, new ArrayList<>());
             locations.clear();
-        }
-    }
-
-    public void addUser(User user) {
-        this.userMap.put(user, );
-    }
-
-    public void sendNotificationToAll(Notification message) {
-        for (User user : userMap.keySet()) {
-            sendNotification(message);
+            userMap.put(user, locations);
         }
     }
 
     public void sendNotificationToLocation(String location, Notification message) {
-        for (User user : userMap.keySet()) {
-            List<String> locations = userMap.get(user);
-            if (locations.contains(location)) {
-                sendNotification(message);
+        this.userMap.forEach((user, locations) -> {
+            if (locations.contains(location)){
+                user.receive(message);
             }
-        }
+        });
     }
 
     public void sendNotification(Notification notification) {
@@ -70,12 +47,9 @@ public class MonitorServices {
 
     public void removeLocation(String location) {
         for (User user : userMap.keySet()) {
-            List<String> locations = userMap.get(user);
+            List<String> locations = userMap.getOrDefault(user, new ArrayList<>());
             locations.remove(location);
+            userMap.put(user, locations);
         }
-    }
-
-    public void removeUser(Long userId) {
-        userMap.keySet().removeIf(user -> user.getId().equals(userId));
     }
 }

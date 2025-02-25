@@ -14,82 +14,72 @@ import java.util.List;
 class MonitorServicesTest {
 
     private MonitorServices monitorServices;
-//    User user1 = Mockito.mock(User.class);
-//    User user2 = Mockito.mock(User.class);
+    User user1 = Mockito.mock(User.class);
+    User user2 = Mockito.mock(User.class);
     private Notification notification;
 
     @BeforeEach
     void setUp() {
         monitorServices = new MonitorServices();
-
-        monitorServices.addUser(1L, "John");
-        monitorServices.addUser(2L, "Jane");
-
         notification = mock(Notification.class);
         when(notification.getMessage()).thenReturn("Test Notification");
     }
 
     @Test
     void testUserCanRegisterToLocationAndReceiveNotifications() {
-        monitorServices.registerUserToLocation(1L, "New York");
+        monitorServices.registerUserToLocation(user1, "New York");
 
         monitorServices.sendNotificationToLocation("New York", notification);
 
-        verify(monitorServices, times(1)).sendNotification(notification);
-        verify(monitorServices, never()).sendNotification(notification);
+        verify(user1, times(1)).receive(notification);
+        verify(user2, never()).receive(notification);
     }
 
     @Test
     void testUserCanUnsubscribeFromLocation() {
-        monitorServices.registerUserToLocation(1L, "New York");
+        monitorServices.registerUserToLocation(user1, "New York");
 
-        monitorServices.unsubscribeUserFromLocation(1L, "New York");
+        monitorServices.unsubscribeUserFromLocation(user1, "New York");
 
         monitorServices.sendNotificationToLocation("New York", notification);
 
-        verify(monitorServices, never()).sendNotification(notification);
+        verify(user1, never()).receive(notification);
     }
 
     @Test
     void testUserCanUnsubscribeFromAllLocations() {
-        monitorServices.registerUserToLocation(1L, "New York");
-        monitorServices.registerUserToLocation(1L, "Los Angeles");
+        monitorServices.registerUserToLocation(user1, "New York");
+        monitorServices.registerUserToLocation(user1, "Los Angeles");
 
-        monitorServices.unsubscribeUserFromAllLocations(1L);
+        monitorServices.unsubscribeUserFromAllLocations(user1);
 
         monitorServices.sendNotificationToLocation("New York", notification);
         monitorServices.sendNotificationToLocation("Los Angeles", notification);
 
-        verify(monitorServices, never()).sendNotification(notification);
-    }
-
-    @Test
-    void testSendNotificationToLocation() {
-        monitorServices.registerUserToLocation(1L, "New York");
-        monitorServices.registerUserToLocation(2L, "Los Angeles");
-
-        monitorServices.sendNotificationToLocation("New York", notification);
-
-        verify(monitorServices, times(1)).sendNotification(notification);
-        verify(monitorServices, never()).sendNotification(notification);
+        verify(user1, never()).receive(notification);
     }
 
     @Test
     void testSendNotificationToAllUsers() {
-        monitorServices.sendNotificationToAll(notification);
+        monitorServices.registerUserToLocation(user1, "New York");
+        monitorServices.registerUserToLocation(user2, "Los Angeles");
 
-        verify(monitorServices, times(1)).sendNotificationToAll(notification);
+        monitorServices.sendNotification(notification);
+
+        verify(user1, times(1)).receive(notification);
+        verify(user2, times(1)).receive(notification);
     }
 
     @Test
     void testRemoveLocation() {
-        monitorServices.registerUserToLocation(1L, "New York");
-        monitorServices.registerUserToLocation(2L, "New York");
+        monitorServices.registerUserToLocation(user1, "New York");
+        monitorServices.registerUserToLocation(user2, "New York");
 
         monitorServices.removeLocation("New York");
 
         monitorServices.sendNotificationToLocation("New York", notification);
 
-        verify(monitorServices, never()).sendNotification(notification);
+        verify(user1, never()).receive(notification);
+        verify(user2, never()).receive(notification);
     }
 }
