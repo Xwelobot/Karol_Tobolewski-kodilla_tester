@@ -27,12 +27,11 @@ public class UsersManager {
     }
 
     public static List<String> filterAgeOfUsers(int age) {
-        List<String> userages = UsersRepository.getUsersList()
+        return UsersRepository.getUsersList()
                 .stream()
                 .filter(a -> a.getAge() > age)
                 .map(UsersManager::getUserName)
                 .collect(Collectors.toList());
-        return userages;
     }
 
     public static List<String> filterNumberOfPosts() {

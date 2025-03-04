@@ -14,7 +14,7 @@ class WarehouseTestSuite {
 
         Order IsOrderAdded = warehouse.getOrder("0001");
 
-        assertEquals("0001", IsOrderAdded);
+        assertEquals("0001", IsOrderAdded.getNumber());
     }
 
     @Test

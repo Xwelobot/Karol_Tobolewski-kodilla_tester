@@ -41,13 +41,14 @@ class UsersManagerTest {
     }
 
     @Test
-    public void testFilterAgeAbove20(){
+    public void testFilterAgeAbove40(){
         List<String> users = new ArrayList<>();
         users.add("Walter White");
         users.add("Gus Firing");
+        users.add("Gale Boetticher");
         users.add("Mike Ehrmantraut");
 
-        List<String> oldAge = UsersManager.filterAgeOfUsers(20);
+        List<String> oldAge = UsersManager.filterAgeOfUsers(40);
         assertEquals(users, oldAge);
     }
 
