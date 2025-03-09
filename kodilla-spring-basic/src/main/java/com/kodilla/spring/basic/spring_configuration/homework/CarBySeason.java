@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 public class CarBySeason {
 
-    @Bean
     public Car getCarBySeason(String season){
         switch (season.toLowerCase()){
             case "winter":

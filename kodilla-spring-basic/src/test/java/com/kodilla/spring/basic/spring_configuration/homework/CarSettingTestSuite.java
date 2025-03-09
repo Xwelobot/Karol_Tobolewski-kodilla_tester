@@ -14,7 +14,7 @@ class CarSettingTestSuite {
     @Test
     public void shouldGetCabrio(){
         //Given
-        ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.basic.spring_configuration.homework");
+        ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
         String season = "summer";
         Car car = (Car) context.getBean("carSelect", season);
         //When

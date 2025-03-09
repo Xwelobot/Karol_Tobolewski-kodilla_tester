@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 public class CarSetting {
 
 
-    @Bean
     public CarBySeason carBySeason(){
         return new CarBySeason();
 
