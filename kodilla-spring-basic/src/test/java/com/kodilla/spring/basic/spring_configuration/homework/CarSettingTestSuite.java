@@ -15,8 +15,7 @@ class CarSettingTestSuite {
     public void shouldGetCabrio(){
         //Given
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
-        String season = "summer";
-        Car car = (Car) context.getBean("carSelect", season);
+        Car car = (Car) context.getBean(Car.class);
         //When
         String result = car.getCarType();
         System.out.println(result);
@@ -25,4 +24,14 @@ class CarSettingTestSuite {
 
     }
 
+    @Test
+    public void shouldHaveLightsOn(){
+        //Given
+        ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
+        Car car = (Car) context.getBean(Car.class);
+        //When
+        boolean result = car.hasHeadlightsTurnedOn();
+        //Then
+        assertTrue(result);
+    }
 }

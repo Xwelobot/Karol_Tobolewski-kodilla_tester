@@ -13,9 +13,16 @@ public class CarSetting {
     }
 
     @Bean
+    public String season(){
+        return "summer";
+    }
+
+    @Bean
     public Car carSelect(String season){
         CarBySeason carBySeason = carBySeason();
         return carBySeason.getCarBySeason(season);
     }
+
+
 
 }
