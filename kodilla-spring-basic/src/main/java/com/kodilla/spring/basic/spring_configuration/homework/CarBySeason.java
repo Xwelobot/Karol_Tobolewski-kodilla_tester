@@ -17,23 +17,23 @@ public class CarBySeason {
     public Car getCarBySeason(String season){
         switch (season.toLowerCase()){
             case "winter":
-                if (currentTime.isBefore(start) || currentTime.isAfter(end)){
+                if (currentTime.isBefore(start) || currentTime.isAfter(end)) {
                     new SUV(true);
-                    return null;
+                } else {
+                    new SUV(false);
                 }
-                return new SUV(true);
             case "summer":
                 if (currentTime.isBefore(start) || currentTime.isAfter(end)){
                     new Cabrio(true);
-                    return null;
+                } else {
+                    new Cabrio(false);
                 }
-                return new Cabrio(true);
             case "spring", "autumn":
                 if (currentTime.isBefore(start) || currentTime.isAfter(end)) {
                     new Sedan(true);
-                    return null;
+                } else {
+                    new Sedan(false);
                 }
-                return new Sedan(true);
             default:
                 return null;
         }

@@ -3,8 +3,15 @@ package com.kodilla.spring.basic.spring_configuration.homework;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalTime;
+
 @Configuration
 public class CarSetting {
+
+    LocalTime currentTime = LocalTime.now();
+
+    LocalTime start = LocalTime.of(6, 0);
+    LocalTime end = LocalTime.of(20, 0);
 
 
     public CarBySeason carBySeason(){

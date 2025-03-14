@@ -32,6 +32,6 @@ class CarSettingTestSuite {
         //When
         boolean result = car.hasHeadlightsTurnedOn();
         //Then
-        assertTrue(result);
+        assertEquals(true, result);
     }
 }
