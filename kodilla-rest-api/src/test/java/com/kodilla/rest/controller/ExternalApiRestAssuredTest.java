@@ -23,4 +23,25 @@ class ExternalApiRestAssuredTest {
                 log().all();  // [5]
     }
 
+    @Test
+    void testPostShouldGetUpdatedAndReturnValid(){
+        String requestBody = "{\n" +
+                "    \"id\": 1,\n" +
+                "    \"title\": \"Updated title\",\n" +
+                "    \"body\": \"This is the updated body content.\",\n" +
+                "    \"userId\": 1\n" +
+                "}";
+        given().
+                header("Content-Type", "application/json").
+                body(requestBody).
+        when().
+                put("https://jsonplaceholder.typicode.com/posts/1").
+        then().
+                assertThat().
+                statusCode(200).
+                body("title", equalTo("Updated title")).
+                body("body", equalTo("This is the updated body content.")).
+                log().all();
+    }
+
 }
