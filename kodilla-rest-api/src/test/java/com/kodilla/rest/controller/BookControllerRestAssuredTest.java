@@ -50,6 +50,4 @@ class BookControllerRestAssuredTest {
                 .body("[1].author", Matchers.equalTo("Author 2"))
                 .status(HttpStatus.OK);
     }
-
-
 }
