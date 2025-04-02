@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class AllegroTestingApp {
     public static void main(String[] args) {
@@ -29,10 +30,10 @@ public class AllegroTestingApp {
         Select selectCategory = new Select(category);
         selectCategory.selectByIndex(3);
         search.sendKeys("Mavic mini");
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(
-//                ExpectedConditions.visibilityOfElementLocated(By.xpath("//a/h3")));
         button.submit();
+        List<WebElement> elements = driver.findElements(By.className("mvrt_8 mse2_k4"));
+        elements.get(0).click();
+        elements.get(0).getText();
 
 
     }
