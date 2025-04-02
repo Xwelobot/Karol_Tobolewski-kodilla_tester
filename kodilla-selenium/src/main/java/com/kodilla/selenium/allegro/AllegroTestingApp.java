@@ -32,9 +32,9 @@ public class AllegroTestingApp {
         search.sendKeys("Mavic mini");
         button.submit();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.className("opbox-listing-layout")));
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(
+//                ExpectedConditions.visibilityOfElementLocated(By.className("opbox-listing-layout")));
 
         List<WebElement> elements = driver.findElements(By.className("mvrt_8 mse2_k4"));
         elements.get(0).click();
