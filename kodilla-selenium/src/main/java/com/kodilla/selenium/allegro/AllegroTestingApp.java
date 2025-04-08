@@ -13,30 +13,28 @@ import java.time.Duration;
 import java.util.List;
 
 public class AllegroTestingApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "c:\\selenium-drivers\\chrome\\chromedriver-win64\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         ChromeDriver driver = new ChromeDriver(options);
-        driver.get("https://allegro.pl");
+        driver.get("https://www.ebay.pl/");
+        Thread.sleep(2000);
 
         Alert alert = driver.switchTo().alert();
         alert.accept();
 
-        WebElement category = driver.findElement(By.className("mse2_40 mqen_m6 m911_5r mefy_5r mnyp_5r mdwl_5r mj6k_n7 mg9e_0 mj7a_0 mh36_8 mvrt_8 _535b5_v6cmg"));
-        WebElement search = driver.findElement(By.className("m7er_k4 mgn2_14 mp0t_0a m9tr_5r mx7m_1 m911_co mnyp_co mdwl_co mlkp_ag mefy_5r mm2b_0 mldj_0 mtag_2 msbw_2 mzaq_1 mjyo_6x mse2_40 mqu1_40 mg9e_8 mvrt_8 mj7a_8 mh36_8 msts_n7 _535b5_3WgCA"));
-        WebElement button = driver.findElement(By.className("mh36_16 mvrt_16 mqu1_40 mpof_5r mpof_z0_m"));
+        WebElement category = driver.findElement(By.className("_sacat"));
+        WebElement search = driver.findElement(By.className("_nkw"));
+        WebElement button = driver.findElement(By.className("gh-search-button__label"));
 
         Select selectCategory = new Select(category);
         selectCategory.selectByIndex(3);
-        search.sendKeys("Mavic mini");
+        search.sendKeys("zegarek");
         button.submit();
 
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(
-//                ExpectedConditions.visibilityOfElementLocated(By.className("opbox-listing-layout")));
 
-        List<WebElement> elements = driver.findElements(By.className("mvrt_8 mse2_k4"));
+        List<WebElement> elements = driver.findElements(By.className("srp-results srp-grid clearfix"));
         elements.get(0).click();
         elements.get(0).getText();
 
