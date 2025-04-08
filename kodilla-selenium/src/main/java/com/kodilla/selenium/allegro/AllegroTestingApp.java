@@ -21,23 +21,24 @@ public class AllegroTestingApp {
         driver.get("https://www.ebay.pl/");
         Thread.sleep(2000);
 
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
 
-        WebElement category = driver.findElement(By.className("_sacat"));
-        WebElement search = driver.findElement(By.className("_nkw"));
+        WebElement category = driver.findElement(By.name("_sacat"));
+        WebElement search = driver.findElement(By.name("_nkw"));
         WebElement button = driver.findElement(By.className("gh-search-button__label"));
 
+        search.sendKeys("zegarek");
         Select selectCategory = new Select(category);
         selectCategory.selectByIndex(3);
-        search.sendKeys("zegarek");
         button.submit();
 
 
         List<WebElement> elements = driver.findElements(By.className("srp-results srp-grid clearfix"));
-        elements.get(0).click();
-        elements.get(0).getText();
-
+        if (!elements.isEmpty()) {
+            elements.get(0).click();
+            System.out.println(elements.get(0).getText());
+        } else {
+            System.out.println("Brak wyników wyszukiwania");
+        }
 
     }
 }
