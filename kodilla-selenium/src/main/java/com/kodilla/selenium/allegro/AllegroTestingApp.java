@@ -32,7 +32,7 @@ public class AllegroTestingApp {
         button.submit();
 
 
-        List<WebElement> elements = driver.findElements(By.className("srp-results srp-grid clearfix"));
+        List<WebElement> elements = driver.findElements(By.className("s-item s-item__dsa-on-bottom s-item__pl-on-bottom"));
         if (!elements.isEmpty()) {
             elements.get(0).click();
             System.out.println(elements.get(0).getText());
