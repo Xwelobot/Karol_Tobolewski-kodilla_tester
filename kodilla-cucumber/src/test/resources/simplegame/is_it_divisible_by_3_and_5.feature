@@ -1,6 +1,6 @@
 Feature:  Is it divide by 3 or 5
 
-  Scenario Outline: Can be divided by 3 or 5
+  Scenario Outline: If its divided by 3 then say Fizz if by 5 then say Buzz if both then FizzBuzz
 
     Given number is <number>
     When  is it divided by 3 or 5
