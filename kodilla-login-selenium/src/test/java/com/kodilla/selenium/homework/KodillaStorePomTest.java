@@ -21,6 +21,7 @@ class KodillaStorePomTest {
 
     @BeforeEach
     public void setup() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\garuu\\IdeaProjects\\Karol_Tobolewski-kodilla_tester\\chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
@@ -32,18 +33,14 @@ class KodillaStorePomTest {
     public void testIfGetsSameNumberOfSearch() throws InterruptedException {
         String text = "NoteBook";
         storePom.input(text);
-        List<WebElement> elements = driver.findElements(By.className("element"));
-
-        assertEquals(elements.size(), 2);
+        assertEquals(storePom.elements.size(), 2);
     }
 
     @Test
     public void testIfDiffrentSignsMatter() throws InterruptedException{
         String text = "nOtEbooK";
         storePom.input(text);
-        List<WebElement> elements = driver.findElements(By.className("element"));
-
-        assertEquals(elements.size(), 2);
+        assertEquals(storePom.elements.size(), 2);
 
     }
 

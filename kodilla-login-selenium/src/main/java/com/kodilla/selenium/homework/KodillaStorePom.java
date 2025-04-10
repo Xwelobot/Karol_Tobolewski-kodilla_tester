@@ -15,6 +15,9 @@ public class KodillaStorePom extends AbstractPom {
     @FindBy(css = "input[type='text']")
     WebElement textField;
 
+    @FindBy(className = "element" )
+    List<WebElement> elements;
+
     public KodillaStorePom(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -23,15 +26,6 @@ public class KodillaStorePom extends AbstractPom {
     public void input(String text) throws InterruptedException {
         textField.sendKeys(text);
         Thread.sleep(3000);
-        List<WebElement> elements = driver.findElements(By.className("element"));
-        if (!elements.isEmpty()) {
-            elements.size();
-            System.out.println(elements.size());
-        } else {
-            System.out.println("Brak wyników wyszukiwania");
-        }
-        textField.clear();
-
     }
 
     public void close(){
