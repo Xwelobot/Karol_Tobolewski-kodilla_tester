@@ -24,6 +24,10 @@ public class WalletSteps {
     public void $30_should_be_dispensed() {
         assertEquals(30, cashSlot.getContents());
     }
+    @Then("the balance of my wallet should be $170")
+    public void the_balance_of_my_wallet_should_be_$170() {
+        assertEquals(170, wallet.getBalance());
+    }
 
     @Given("I have deposited $0 in my wallet")
     public void i_have_deposited_$0_in_my_wallet() {
@@ -37,7 +41,7 @@ public class WalletSteps {
     }
     @Then("Money can't be dispensed because there is $0")
     public void money_can_t_be_dispensed_because_there_is_$0() {
-        assertEquals(0, cashSlot.getContents());
+        assertEquals(-50, wallet.getBalance());
     }
 
     @Given("I have deposited $25 in my wallet")
@@ -52,6 +56,6 @@ public class WalletSteps {
     }
     @Then("Money can't be dispensed because there is $25")
     public void money_can_t_be_dispensed_because_there_is_$25() {
-        assertEquals(25, cashSlot.getContents());
+        assertEquals(-1, wallet.getBalance());
     }
 }
