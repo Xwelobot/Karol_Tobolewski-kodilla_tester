@@ -4,5 +4,4 @@ import org.junit.platform.suite.api.*;
 @IncludeEngines("cucumber")
 @SelectClasspathResource("/")
 public class TestRunner {
-
 }

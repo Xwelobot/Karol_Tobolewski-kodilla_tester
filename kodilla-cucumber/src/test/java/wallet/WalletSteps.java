@@ -28,28 +28,29 @@ public class WalletSteps {
     @Given("I have deposited $0 in my wallet")
     public void i_have_deposited_$0_in_my_wallet() {
         wallet.deposit(0);
-        assertEquals(wallet, wallet.getBalance());
+        assertEquals(0, wallet.getBalance());
     }
     @When("I request $50")
     public void i_request_$50() {
         Cashier cashier = new Cashier(cashSlot);
         cashier.withdraw(wallet, 50);
     }
-    @Then("Money can't be dispensed")
+    @Then("Money can't be dispensed1")
     public void money_can_t_be_dispensed1() {
         assertEquals(0, cashSlot.getContents());
     }
+
     @Given("I have deposited $25 in my wallet")
     public void i_have_deposited_$25_in_my_wallet() {
         wallet.deposit(25);
-        assertEquals(wallet, wallet.getBalance());
+        assertEquals(25, wallet.getBalance());
     }
     @When("I request $26")
     public void i_request_$26() {
         Cashier cashier = new Cashier(cashSlot);
         cashier.withdraw(wallet, 26);
     }
-    @Then("Money can't be dispensed")
+    @Then("Money can't be dispensed2")
     public void money_can_t_be_dispensed2() {
         assertEquals(25, cashSlot.getContents());
     }
