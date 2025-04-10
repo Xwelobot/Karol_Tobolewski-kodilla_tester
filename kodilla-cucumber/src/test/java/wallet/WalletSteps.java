@@ -35,8 +35,8 @@ public class WalletSteps {
         Cashier cashier = new Cashier(cashSlot);
         cashier.withdraw(wallet, 50);
     }
-    @Then("Money can't be dispensed1")
-    public void money_can_t_be_dispensed1() {
+    @Then("Money can't be dispensed because there is $0")
+    public void money_can_t_be_dispensed_because_there_is_$0() {
         assertEquals(0, cashSlot.getContents());
     }
 
@@ -50,8 +50,8 @@ public class WalletSteps {
         Cashier cashier = new Cashier(cashSlot);
         cashier.withdraw(wallet, 26);
     }
-    @Then("Money can't be dispensed2")
-    public void money_can_t_be_dispensed2() {
+    @Then("Money can't be dispensed because there is $25")
+    public void money_can_t_be_dispensed_because_there_is_$25() {
         assertEquals(25, cashSlot.getContents());
     }
 }

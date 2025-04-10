@@ -7,7 +7,7 @@ Feature: Cash Withdrawal
   Scenario Outline: Not enough money in wallet
     Given I have deposited $<cashIn> in my wallet
     When I request $<cashOut>
-    Then Money can't be dispensed
+    Then Money can't be dispensed because there is $<cashIn>
     Examples:
       | cashIn  | cashOut |
       | 0 | 50 |
