@@ -32,7 +32,7 @@ public class AllegroTestingApp {
         button.submit();
 
 
-        List<WebElement> elements = driver.findElements(By.className("s-item s-item__dsa-on-bottom s-item__pl-on-bottom"));
+        List<WebElement> elements = driver.findElements(By.xpath("/html/body/div[5]/div[4]/div[3]/div[1]/div[3]/ul/li"));
         if (!elements.isEmpty()) {
             elements.get(0).click();
             System.out.println(elements.get(0).getText());
