@@ -1,0 +1,29 @@
+# Skrypt PowerShell do budowania projektu Gradle i kopiowania pliku JAR
+
+# Ustawienia ścieżek
+    $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
+            $libsDir = Join-Path $projectRoot "build\libs"
+    $targetDir = "C:\project"
+
+            # 1. Usuń wszystkie pliki *.jar w katalogu build/libs
+    Write-Output "Czyszczenie plików JAR w $libsDir..."
+    Remove-Item "$libsDir\*.jar" -Force -ErrorAction SilentlyContinue
+
+# 2. Wywołaj gradlew build
+    Write-Output "Uruchamianie kompilacji: gradlew build..."
+            & "$projectRoot\gradlew.bat" build
+
+# 3. Sprawdź, czy wygenerowano plik JAR
+    $jarFiles = Get-ChildItem -Path $libsDir -Filter *.jar
+
+if ($jarFiles.Count -gt 0) {
+    # 4. Skopiuj JAR do katalogu C:\project
+        Write-Output "Znaleziono plik JAR. Kopiowanie do $targetDir..."
+        foreach ($jar in $jarFiles) {
+            Copy-Item $jar.FullName -Destination $targetDir -Force
+            Write-Output "Skopiowano: $($jar.Name)"
+        }
+    } else {
+    # Plik JAR nie istnieje — błąd kompilacji
+        Write-Output "Błąd: Kompilacja nie wygenerowała pliku JAR."
+    }
