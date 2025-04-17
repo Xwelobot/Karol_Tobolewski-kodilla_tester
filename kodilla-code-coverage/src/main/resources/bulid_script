@@ -1,4 +1,4 @@
-# Skrypt PowerShell do budowania projektu Gradle i kopiowania pliku JAR
+# Skrypt do budowania projektu Gradle i kopiowania pliku JAR
 
 # Ustawienia ścieżek
     $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
