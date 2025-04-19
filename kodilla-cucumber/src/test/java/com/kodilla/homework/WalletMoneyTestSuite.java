@@ -11,7 +11,7 @@ public class WalletMoneyTestSuite {
     private WalletMoney walletMoney;
     private boolean withdrawalSuccessful;
     private int dispensedAmount;
-    private String message;
+    UserPrompt prompt = new UserPrompt();
 
     @Given("there is ${int} in my wallet")
     public void there_is_money_in_my_wallet(int amount) {
@@ -24,7 +24,9 @@ public class WalletMoneyTestSuite {
         withdrawalSuccessful = walletMoney.withdraw(amount);
         dispensedAmount = withdrawalSuccessful ? amount : 0;
         if (!withdrawalSuccessful) {
-            message = "I don't have enough money in my wallet";
+            prompt.setMessage("I don't have enough money in my wallet");
+            prompt.setBalance(amount);
+            System.out.println(prompt.toString());
         }
     }
 
@@ -35,7 +37,7 @@ public class WalletMoneyTestSuite {
 
     @Then("I should be told that I don't have enough money in my wallet")
     public void i_should_be_told_that_i_dont_have_enough_money() {
-        assertEquals("I don't have enough money in my wallet", message);
+        assertEquals("I don't have enough money in my wallet", prompt.getMessage());
     }
 
     @When("I check the balance of my wallet")
