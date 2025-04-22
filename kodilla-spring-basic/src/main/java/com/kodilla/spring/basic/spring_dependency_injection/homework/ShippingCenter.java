@@ -13,6 +13,9 @@ public class ShippingCenter {
     @Qualifier(value = "InPostDeliveryService")
     private DeliveryService deliveryService;
 
+    public ShippingCenter(NotificationService notificationService, DeliveryService deliveryService) {
+    }
+
     public String sendPackage(String address, double weight) {
         if (deliveryService.deliverPackage(address, weight)) {
             return notificationService.success(address);
